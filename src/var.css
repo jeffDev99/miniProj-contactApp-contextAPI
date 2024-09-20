@@ -1,0 +1,9 @@
+:root {
+  --dark: #000;
+  --white: #fff;
+  --light: #e0e0e0;
+  --blue: #3c7bf5;
+  --blue-hover: #004085;
+  --bg-primary: #121212;
+  --radius-primary: 0.5rem;
+}

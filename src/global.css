@@ -3,10 +3,12 @@
   line-height: 1.5;
 }
 body {
+  margin: auto;
+  max-width: 1000px;
   min-height: 100vh;
   padding: 10px;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--dark);
+  color: var(--light);
 }
 * {
   padding: 0;
@@ -111,7 +113,7 @@ body {
 }
 .inputBtn{
   display: flex;
-  background-color: #3c7bf5;
+  background-color: var(--blue);
   color: #fff;
   border-radius: .5rem;
   border: none;
@@ -121,5 +123,5 @@ body {
 }
 
 .inputBtn:hover{
-  background-color: #004085;
+  background-color: var(--blue-hover);
 }
