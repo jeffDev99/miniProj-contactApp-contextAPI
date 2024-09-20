@@ -1,0 +1,22 @@
+.navbarList{
+    list-style: none;
+    display: flex;
+}
+.navbarList li{
+    margin-right: 1rem;
+}
+
+.navbarList li a{
+    color: var(--light);
+    background-color: var(--blue);
+    padding: .5rem .75rem;
+    border-radius:var(--radius-primary);
+    display: block;
+    transition:var(--transition-main) ;
+}
+.navbarList li a:hover{
+    background-color: var(--blue-hover);
+}
+.active{
+  box-shadow: 0 0 5px  var(--blue) !important;
+}

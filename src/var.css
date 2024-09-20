@@ -6,4 +6,5 @@
   --blue-hover: #004085;
   --bg-primary: #121212;
   --radius-primary: 0.5rem;
+  --transition-main: 0.1s all ease-in;
 }
