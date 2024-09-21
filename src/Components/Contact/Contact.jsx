@@ -3,45 +3,46 @@ import { contactContext } from "../../main";
 import Modal from "../Modal/Modal";
 import styles from "./Contact.module.css";
 import { api } from "../../Services/config";
+import { useNavigate } from "react-router-dom";
 
 export default function Contact() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setModalOpen] = useState(false);
   const [contactToDelete, setContactToDelete] = useState(null);
   const [showBtns, setShowBtns] = useState({});
+  const myNavigate = useNavigate();
 
-  const { contacts, setContacts } = useContext(contactContext);
-
+  const { contacts, setContacts, contact,setContact , setIsEditing } = useContext(contactContext);
   useEffect(() => {
     api.get("/contacts").then((res) => {
-      console.log(res);
       setContacts(res.data);
     });
-  }, []);
+  }, [isModalOpen]);
 
   const filteredContacts = contacts.filter((contact) => contact.fullname.toLowerCase().includes(searchQuery.toLowerCase()) || contact.email.toLowerCase().includes(searchQuery.toLowerCase()));
-
-  const openModal = (contact) => {
-    setContactToDelete(contact);
+  const openModal = (item) => {
+    setContactToDelete(item);
     setModalOpen(true);
   };
-
   const closeModal = () => {
     setModalOpen(false);
   };
-
   const handleDelete = () => {
-    deleteHandler(contactToDelete.id);
+    api.delete(`/contacts/${contactToDelete.id}`);
     setModalOpen(false);
   };
-
   const toggleButtons = (id) => {
     setShowBtns((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const startEditing = (item) => {
+    setContact(item);
+    setIsEditing(true);
+    myNavigate("/editcontact");
+  };
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if ( !event.target.closest(".more-btn")) {
+      if (!event.target.closest(".more-btn")) {
         setShowBtns({});
       }
     };
@@ -73,10 +74,10 @@ export default function Contact() {
                   <td>{item.fullname}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
-                  <td style={{ display: "flex", justifyContent: "center", flexDirection: showBtns[item.id] ? "normal" : "center" }}>
+                  <td style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: showBtns[item.id] ? "normal" : "center" }}>
                     {showBtns[item.id] ? (
                       <>
-                        <button className="btn btn-danger" style={{ marginBottom: ".5rem" }} onClick={() => deleteHandler(item)}>
+                        <button className="btn btn-danger" style={{ marginBottom: ".5rem" }} onClick={() => openModal(item)}>
                           Delete 🗑
                         </button>
                         <button className="btn btn-primary" onClick={() => startEditing(item)}>

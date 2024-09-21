@@ -1,0 +1,5 @@
+.AddEditContacts{
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    border-radius: .5rem;
+}
