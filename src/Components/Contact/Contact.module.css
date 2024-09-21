@@ -1,0 +1,52 @@
+.title{
+    padding: 1rem 0;
+}
+.subtitle{
+    color: #616161;
+}
+.table{
+    width: 100%;
+    text-align: center;
+    background-color: #121212;
+    border-radius: .5rem;
+    padding:1rem .5rem;
+}
+.table th{
+    background-color: #383838;
+    border-radius: .5rem;
+}
+.table td{
+    padding: 1rem 0;
+}
+.contactBtn{
+    padding: .5rem;
+    border-radius: .5rem;
+    border: none;
+    outline: none;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.contactBtn.delete{
+    background-color: tomato;
+    color: #fff;
+}
+
+.contactBtn.info{
+    background-color: royalblue;
+    color: #fff;
+}
+.formSearch{
+    background-color: #121212;
+    border-radius: .5rem;
+    padding: 1rem;
+    border: none;
+    color: #fff;
+    margin: 1rem 0 0;
+    width: 100%;
+}
+
+.contactIcon{
+    width: 25px;
+    height: 25px;
+}
