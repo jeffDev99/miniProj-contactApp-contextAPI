@@ -50,3 +50,10 @@
     width: 25px;
     height: 25px;
 }
+.deleteSelected{
+    margin-bottom: 1rem;
+}
+
+.deleteSelected:disabled{
+    opacity: .5;
+}
