@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState ,useEffect} from "react";
 import { contactContext } from "../../main";
 import Modal from "../Modal/Modal";
 import styles from "./Contact.module.css";
+import { api } from "../../Services/config";
 
 export default function Contact() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,7 +10,15 @@ export default function Contact() {
   const [contactToDelete, setContactToDelete] = useState(null);
   const [isShowBtns, setIsShowBtns] = useState(false);
 
-  const { contacts } = useContext(contactContext);
+  const { contacts , setContacts } = useContext(contactContext);
+
+  useEffect(() => {
+    api.get("/contacts").then(res => {
+      console.log(res);
+      setContacts(res.data); 
+    });
+  }, []);
+
 
   const filteredContacts = contacts.filter((contact) => contact.fullname.toLowerCase().includes(searchQuery.toLowerCase()) || contact.email.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -26,7 +35,6 @@ export default function Contact() {
     deleteHandler(contactToDelete.id);
     setModalOpen(false);
   };
-
   return (
     <>
       <h4 className={styles.subtitle}>{contacts.length} TOTAL</h4>

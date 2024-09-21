@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 // main layout
 import Contact from "./Components/Contact/Contact";
 import AddContact from "./Components/AddContact/AddContact";
@@ -8,7 +9,7 @@ const routes = [
     path: "/",
     element: <Home />,
     children: [
-      { path: "", element: <Contact /> },
+      { path: "", element : <Navigate to="/contact" replace={true} /> },
       { path: "/contact", element: <Contact /> },
       { path: "/addcontact", element: <AddContact /> },
       { path: "*", element: <NotFound /> },

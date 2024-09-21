@@ -1,26 +1,16 @@
-import { StrictMode, createContext, useEffect, useState } from "react";
+import { StrictMode, createContext, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { api } from "./Services/config.js";
 import App from "./App.jsx";
 import "./var.css";
 import "./global.css";
-
 export const contactContext = createContext();
-
 const Main = () => {
   const [contacts, setContacts] = useState([]);
   const [contact, setContact] = useState([]);
-
-  useEffect(() => {
-    api.get("/contacts").then(res => {
-      console.log(res);
-      setContacts(res.data); 
-    });
-  }, []);
-
+  const [alert, setAlert] = useState("");
   return (
-    <contactContext.Provider value={{contacts , contact , setContact}}>
+    <contactContext.Provider value={{contacts , setContacts , contact , setContact,alert, setAlert}}>
       <App />
     </contactContext.Provider>
   );
